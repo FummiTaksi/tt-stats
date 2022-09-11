@@ -1,0 +1,25 @@
+version: '3.7'
+
+services:
+  tt-stats-backend:
+    build: ./tt-stats-backend
+    command: bash -c "python backend/manage.py runserver 0.0.0.0:8000"
+    image: tt-stats-backend
+    container_name: tt-stats-backend
+    working_dir: /app
+    volumes:
+      - ./tt-stats-backend:/app
+    depends_on:
+      - tt-stats-db
+    ports:
+      - "8000:8000"
+
+  tt-stats-db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_DB: tt-stats
+      POSTGRES_USER: tt-stats
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
