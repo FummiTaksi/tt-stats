@@ -1,0 +1,13 @@
+version: '3.7'
+
+services:
+  tt-stats-backend:
+    build: ./tt-stats-backend
+    command: bash -c "python backend/manage.py runserver 0.0.0.0:8000"
+    image: tt-stats-backend
+    container_name: tt-stats-backend
+    working_dir: /app
+    volumes:
+      - ./tt-stats-backend:/app
+    ports:
+      - "8000:8000"
