@@ -13,3 +13,12 @@
 `docker-compose up`
 
 go to localhost:8000
+
+
+### Migrations
+
+Run migrations with command
+
+```
+docker-compose exec tt-stats-backend bash -c "python backend/manage.py migrate"
+```
