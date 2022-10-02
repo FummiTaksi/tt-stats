@@ -12,8 +12,15 @@
 
 Copy the contents from `tt-stats-backend/backend/backend/.env.dist` to `tt-stats-backend/backend/backend/.env`
 
-Run `docker-compose up` and go to localhost:8000
+Run `docker-compose up` and go to `localhost:8000/graphql`
 
+Write query
+
+```
+query {
+ hello
+}
+```
 
 ### Migrations
 
