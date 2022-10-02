@@ -10,9 +10,9 @@
 
 ### How to run locally
 
-`docker-compose up`
+Copy the contents from `tt-stats-backend/backend/backend/.env.dist` to `tt-stats-backend/backend/backend/.env`
 
-go to localhost:8000
+Run `docker-compose up` and go to localhost:8000
 
 
 ### Migrations
