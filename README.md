@@ -22,18 +22,63 @@ query {
 }
 ```
 
+or
+
+```
+query {
+ players {
+  id,
+  name
+}
+}
+```
+
 ### Migrations
 
-Run migrations with command
+
+## Generate migrations
+
+Generate migrations with command
+
+```
+docker-compose exec tt-stats-backend bash -c "python backend/manage.py makemigrations src"
+```
+
+## Run migrations
+
+Run all migrations with command
 
 ```
 docker-compose exec tt-stats-backend bash -c "python backend/manage.py migrate"
 ```
 
 
+### Connection to local database
+
+```
+docker-compose exec tt-stats-db bash
+psql -U tt-stats
+\c tt-stats
+```
+
 ### Install packages to backend
 
 ```
 docker-compose exec tt-stats-backend bash -c "pip install package_name"
 docker-compose exec tt-stats-backend bash -c "pip freeze > requirements.txt"
+```
+
+As you develop, the backend application should work normally. 
+NOTE: Every time you run a new version of the backend where new packages is installed you are required to build the Docker image again:
+
+```
+docker-compose up --build tt-stats-backend
+```
+
+### Seed players
+
+Insert two players into database with command
+
+```
+cat ./database-seeds/insert-players.sql| docker-compose exec -T tt-stats-db psql -U tt-stats
 ```
