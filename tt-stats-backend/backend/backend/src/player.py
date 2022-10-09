@@ -5,3 +5,4 @@ class Player(models.Model):
 
     class Meta:
         db_table='player'
+        
