@@ -14,7 +14,7 @@ Copy the contents from `tt-stats-backend/backend/backend/.env.dist` to `tt-stats
 
 Run `docker-compose up` and go to `localhost:8000/graphql`
 
-Write query
+Write query to test that the GraphQL interface is working
 
 ```
 query {
@@ -22,7 +22,7 @@ query {
 }
 ```
 
-or
+or fetch players
 
 ```
 query {
@@ -30,6 +30,28 @@ query {
   id,
   name
 }
+}
+```
+
+Write mutation to create a match:
+
+```
+mutation {
+  createMatch(loserId: 1, winnerId: 2) {
+    match {
+      id
+      winner {
+        id
+        name
+      }
+      loser {
+        id
+        name
+      }
+      createdAt
+      updatedAt
+    }
+  }
 }
 ```
 
