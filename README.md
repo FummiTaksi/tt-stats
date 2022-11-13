@@ -10,6 +10,7 @@
 
 ### How to run locally
 
+## Backend
 Copy the contents from `tt-stats-backend/backend/backend/.env.dist` to `tt-stats-backend/backend/backend/.env`
 
 Run `docker-compose up` and go to `localhost:8000/graphql`
@@ -54,6 +55,17 @@ mutation {
   }
 }
 ```
+
+## Frontend
+
+Copy contents from `tt-stats-frontend/.env.dist` to `tt-stats-frontend/.env.local`
+
+```
+cd tt-stats-frontend
+yarn serve
+```
+
+and open `localhost:8080`
 
 ### Migrations
 
