@@ -1,18 +1,26 @@
 <template>
-  <div class="home">
+  <div class="apollo">
     <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <h1>{{ hello }}</h1>
   </div>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
-
-@Options({
-  components: {
-    HelloWorld,
+import gql from "graphql-tag";
+//import { useQuery } from "@vue/apollo-composable";
+export default {
+  apollo: {
+    hello: gql`
+      {
+        hello
+      }
+    `,
   },
-})
-export default class HomeView extends Vue {}
+  data() {
+    return {
+      testi: "Testi!",
+      hello: "Hello from placeholder. I am not from backend.",
+    };
+  },
+};
 </script>

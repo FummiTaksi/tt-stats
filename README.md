@@ -65,6 +65,8 @@ cd tt-stats-frontend
 yarn serve
 ```
 
+and open `localhost:8080`
+
 ### Migrations
 
 
