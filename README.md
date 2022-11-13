@@ -58,6 +58,8 @@ mutation {
 
 ## Frontend
 
+Copy contents from `tt-stats-frontend/.env.dist` to `tt-stats-frontend/.env.local`
+
 ```
 cd tt-stats-frontend
 yarn serve
