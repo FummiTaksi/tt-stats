@@ -1,12 +1,11 @@
-import { createApp, h, provide } from "vue";
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
-import { ApolloClient } from "apollo-client";
-import { createHttpLink } from "apollo-link-http";
-import { InMemoryCache } from "apollo-cache-inmemory";
-import VueApollo from "vue-apollo";
-import { DefaultApolloClient } from "@vue/apollo-composable";
+import { createApp, h, provide } from 'vue';
+import App from './App.vue';
+import router from './router';
+import store from './store';
+import { ApolloClient } from 'apollo-client';
+import { createHttpLink } from 'apollo-link-http';
+import { InMemoryCache } from 'apollo-cache-inmemory';
+import { DefaultApolloClient } from '@vue/apollo-composable';
 const httpLink = createHttpLink({
   uri: `${process.env.VUE_APP_BACKEND_HOST}/graphql/`,
 });
@@ -19,7 +18,7 @@ const apolloClient = new ApolloClient({
 });
 
 createApp({
-  el: "#app",
+  el: '#app',
   setup() {
     provide(DefaultApolloClient, apolloClient);
   },
@@ -27,4 +26,4 @@ createApp({
 })
   .use(store)
   .use(router)
-  .mount("#app");
+  .mount('#app');

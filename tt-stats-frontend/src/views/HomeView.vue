@@ -8,8 +8,8 @@
 </template>
 
 <script lang="ts">
-import gql from "graphql-tag";
-import { useQuery } from "@vue/apollo-composable";
+import gql from 'graphql-tag';
+import { useQuery } from '@vue/apollo-composable';
 
 const HELLO_QUERY = gql`
   query Hello {
