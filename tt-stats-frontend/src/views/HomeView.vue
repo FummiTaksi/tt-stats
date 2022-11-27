@@ -3,7 +3,7 @@
     <img alt="Vue logo" src="../assets/logo.png" />
     <p v-if="error">Something went wrong...</p>
     <p v-if="loading">Loading...</p>
-    <h1>{{ result.hello }}</h1>
+    <h1 v-else>{{ result.hello }}</h1>
   </div>
 </template>
 
