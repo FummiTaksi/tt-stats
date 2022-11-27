@@ -2318,6 +2318,15 @@
     "@typescript-eslint/types" "5.42.1"
     eslint-visitor-keys "^3.3.0"
 
+"@vue/apollo-composable@^4.0.0-beta.1":
+  version "4.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@vue/apollo-composable/-/apollo-composable-4.0.0-beta.1.tgz#ef7181503785c464bfddb8025870d24b5c8813af"
+  integrity sha512-WjyePUFYft7dZMNrO63DuP5bsl1AO1SKhfy688r2HXlyrCQAxvfRXOiPqnPzhmRn7kyWTKfrwwhkFJfnSq7vyA==
+  dependencies:
+    throttle-debounce "^3.0.1"
+    ts-essentials "^9.1.2"
+    vue-demi "^0.13.1"
+
 "@vue/babel-helper-vue-jsx-merge-props@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@vue/babel-helper-vue-jsx-merge-props/-/babel-helper-vue-jsx-merge-props-1.4.0.tgz#8d53a1e21347db8edbe54d339902583176de09f2"
@@ -8988,6 +8997,11 @@ throttle-debounce@^2.1.0:
   resolved "https://registry.yarnpkg.com/throttle-debounce/-/throttle-debounce-2.3.0.tgz#fd31865e66502071e411817e241465b3e9c372e2"
   integrity sha512-H7oLPV0P7+jgvrk+6mwwwBDmxTaxnu9HMXmloNLXwnNO0ZxZ31Orah2n8lU1eMPvsaowP2CX+USCgyovXfdOFQ==
 
+throttle-debounce@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/throttle-debounce/-/throttle-debounce-3.0.1.tgz#32f94d84dfa894f786c9a1f290e7a645b6a19abb"
+  integrity sha512-dTEWWNu6JmeVXY0ZYoPuH5cRIwc0MeGbJwah9KUNYSJwommQpCzTySTpEe8Gs1J23aeWEuAobe4Ag7EHVt/LOg==
+
 thunky@^1.0.2:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/thunky/-/thunky-1.1.0.tgz#5abaf714a9405db0504732bbccd2cedd9ef9537d"
@@ -9026,6 +9040,11 @@ tr46@~0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/tr46/-/tr46-0.0.3.tgz#8184fd347dac9cdc185992f3a6622e14b9d9ab6a"
   integrity sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==
+
+ts-essentials@^9.1.2:
+  version "9.3.0"
+  resolved "https://registry.yarnpkg.com/ts-essentials/-/ts-essentials-9.3.0.tgz#7e639c1a76b1805c3c60d6e1b5178da2e70aea02"
+  integrity sha512-XeiCboEyBG8UqXZtXl59bWEi4ZgOqRsogFDI6WDGIF1LmzbYiAkIwjkXN6zZWWl4re/lsOqMlYfe8KA0XiiEPw==
 
 ts-invariant@^0.10.3:
   version "0.10.3"
@@ -9424,6 +9443,11 @@ vue-cli-plugin-apollo@~0.22.2:
     nodemon "^2.0.4"
     subscriptions-transport-ws "^0.9.16"
     ts-node "^8.10.2"
+
+vue-demi@^0.13.1:
+  version "0.13.11"
+  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.13.11.tgz#7d90369bdae8974d87b1973564ad390182410d99"
+  integrity sha512-IR8HoEEGM65YY3ZJYAjMlKygDQn25D5ajNFNoKh9RSDMQtlzCxtfQjdQgv9jjK+m3377SsJXY8ysq8kLCZL25A==
 
 vue-eslint-parser@^8.0.0, vue-eslint-parser@^8.0.1:
   version "8.3.0"
