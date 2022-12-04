@@ -8,26 +8,12 @@
 </template>
 
 <script lang="ts">
-import gql from 'graphql-tag'
-import { useQuery } from '@vue/apollo-composable'
-
-const HELLO_QUERY = gql`
-  query Hello {
-    hello
-  }
-`
+import { useHelloQuery } from '../generated/graphql'
 
 export default {
   setup() {
-    const { result, loading, error } = useQuery(HELLO_QUERY)
+    const { result, loading, error } = useHelloQuery()
     return { result, loading, error }
-  },
-  apollo: {
-    hello: gql`
-      query Hello {
-        hello
-      }
-    `,
   },
 }
 </script>
