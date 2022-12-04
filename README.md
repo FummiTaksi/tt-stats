@@ -67,6 +67,25 @@ yarn serve
 
 and open `localhost:8080`
 
+
+### Typescript code generation
+
+```
+cd tt-stats-frontend
+yarn gql:generate
+```
+
+
+### Formatting and typechecking
+
+Commands for formatting and type checking:
+
+```
+cd tt-stats-frontend
+yarn lint
+yarn lint --fix
+yarn types:chck
+```
 ### Migrations
 
 
