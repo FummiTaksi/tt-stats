@@ -65,6 +65,17 @@ export type HelloQueryVariables = Exact<{ [key: string]: never }>
 
 export type HelloQuery = { __typename?: 'Query'; hello?: string | null }
 
+export type PlayersQueryVariables = Exact<{ [key: string]: never }>
+
+export type PlayersQuery = {
+  __typename?: 'Query'
+  players?: Array<{
+    __typename?: 'PlayerType'
+    id: string
+    name: string
+  } | null> | null
+}
+
 export const HelloDocument = gql`
   query Hello {
     hello
@@ -117,8 +128,64 @@ export function useHelloLazyQuery(
 }
 export type HelloQueryCompositionFunctionResult =
   VueApolloComposable.UseQueryReturn<HelloQuery, HelloQueryVariables>
+export const PlayersDocument = gql`
+  query Players {
+    players {
+      id
+      name
+    }
+  }
+`
+
+/**
+ * __usePlayersQuery__
+ *
+ * To run a query within a Vue component, call `usePlayersQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePlayersQuery` returns an object from Apollo Client that contains result, loading and error properties
+ * you can use to render your UI.
+ *
+ * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
+ *
+ * @example
+ * const { result, loading, error } = usePlayersQuery();
+ */
+export function usePlayersQuery(
+  options:
+    | VueApolloComposable.UseQueryOptions<PlayersQuery, PlayersQueryVariables>
+    | VueCompositionApi.Ref<
+        VueApolloComposable.UseQueryOptions<PlayersQuery, PlayersQueryVariables>
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseQueryOptions<PlayersQuery, PlayersQueryVariables>
+      > = {}
+) {
+  return VueApolloComposable.useQuery<PlayersQuery, PlayersQueryVariables>(
+    PlayersDocument,
+    {},
+    options
+  )
+}
+export function usePlayersLazyQuery(
+  options:
+    | VueApolloComposable.UseQueryOptions<PlayersQuery, PlayersQueryVariables>
+    | VueCompositionApi.Ref<
+        VueApolloComposable.UseQueryOptions<PlayersQuery, PlayersQueryVariables>
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseQueryOptions<PlayersQuery, PlayersQueryVariables>
+      > = {}
+) {
+  return VueApolloComposable.useLazyQuery<PlayersQuery, PlayersQueryVariables>(
+    PlayersDocument,
+    {},
+    options
+  )
+}
+export type PlayersQueryCompositionFunctionResult =
+  VueApolloComposable.UseQueryReturn<PlayersQuery, PlayersQueryVariables>
 export const namedOperations = {
   Query: {
     Hello: 'Hello',
+    Players: 'Players',
   },
 }
