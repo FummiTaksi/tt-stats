@@ -9,3 +9,5 @@ ADD . /app
 RUN pip install -r requirements.txt
 
 ADD . /app
+
+CMD ./start-backend.sh
