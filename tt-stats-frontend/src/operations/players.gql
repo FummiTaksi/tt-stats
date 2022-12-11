@@ -1,0 +1,6 @@
+query Players {
+ players {
+  id,
+  name
+  }
+}
