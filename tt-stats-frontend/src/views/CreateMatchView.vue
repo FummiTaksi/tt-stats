@@ -7,7 +7,6 @@
       <div>
         Select winner
         <select v-model="winningPlayer">
-          <option disabled value="">Please select one</option>
           <option
             v-for="player in result.players"
             v-bind:key="player.id"
@@ -20,7 +19,6 @@
       <div>
         Select loser
         <select v-model="losingPlayer">
-          <option disabled value="">Please select one</option>
           <option
             v-for="player in result.players"
             v-bind:key="player.id"
