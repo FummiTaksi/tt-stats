@@ -61,6 +61,26 @@ export type CreateMatch = {
   match?: Maybe<MatchType>
 }
 
+export type CreateMatchMutationVariables = Exact<{
+  loserId: Scalars['ID']
+  winnerId: Scalars['ID']
+}>
+
+export type CreateMatchMutation = {
+  __typename?: 'Mutation'
+  createMatch?: {
+    __typename?: 'createMatch'
+    match?: {
+      __typename?: 'MatchType'
+      id: string
+      createdAt: any
+      updatedAt: any
+      winner: { __typename?: 'PlayerType'; id: string; name: string }
+      loser: { __typename?: 'PlayerType'; id: string; name: string }
+    } | null
+  } | null
+}
+
 export type HelloQueryVariables = Exact<{ [key: string]: never }>
 
 export type HelloQuery = { __typename?: 'Query'; hello?: string | null }
@@ -76,6 +96,67 @@ export type PlayersQuery = {
   } | null> | null
 }
 
+export const CreateMatchDocument = gql`
+  mutation CreateMatch($loserId: ID!, $winnerId: ID!) {
+    createMatch(loserId: $loserId, winnerId: $winnerId) {
+      match {
+        id
+        winner {
+          id
+          name
+        }
+        loser {
+          id
+          name
+        }
+        createdAt
+        updatedAt
+      }
+    }
+  }
+`
+
+/**
+ * __useCreateMatchMutation__
+ *
+ * To run a mutation, you first call `useCreateMatchMutation` within a Vue component and pass it any options that fit your needs.
+ * When your component renders, `useCreateMatchMutation` returns an object that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - Several other properties: https://v4.apollo.vuejs.org/api/use-mutation.html#return
+ *
+ * @param options that will be passed into the mutation, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/mutation.html#options;
+ *
+ * @example
+ * const { mutate, loading, error, onDone } = useCreateMatchMutation({
+ *   variables: {
+ *     loserId: // value for 'loserId'
+ *     winnerId: // value for 'winnerId'
+ *   },
+ * });
+ */
+export function useCreateMatchMutation(
+  options:
+    | VueApolloComposable.UseMutationOptions<
+        CreateMatchMutation,
+        CreateMatchMutationVariables
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseMutationOptions<
+          CreateMatchMutation,
+          CreateMatchMutationVariables
+        >
+      >
+) {
+  return VueApolloComposable.useMutation<
+    CreateMatchMutation,
+    CreateMatchMutationVariables
+  >(CreateMatchDocument, options)
+}
+export type CreateMatchMutationCompositionFunctionResult =
+  VueApolloComposable.UseMutationReturn<
+    CreateMatchMutation,
+    CreateMatchMutationVariables
+  >
 export const HelloDocument = gql`
   query Hello {
     hello
@@ -187,5 +268,8 @@ export const namedOperations = {
   Query: {
     Hello: 'Hello',
     Players: 'Players',
+  },
+  Mutation: {
+    CreateMatch: 'CreateMatch',
   },
 }
