@@ -1,0 +1,4 @@
+fragment Player on PlayerType {
+  id
+  name
+}

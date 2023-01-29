@@ -1,0 +1,12 @@
+fragment Match on MatchType {
+  id
+  winner {
+    ...Player
+  }
+  loser {
+    ...Player
+  }
+
+  createdAt
+  updatedAt
+}
