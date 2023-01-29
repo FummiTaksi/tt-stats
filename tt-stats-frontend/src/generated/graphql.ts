@@ -61,6 +61,21 @@ export type CreateMatch = {
   match?: Maybe<MatchType>
 }
 
+export type MatchFragment = {
+  __typename?: 'MatchType'
+  id: string
+  createdAt: any
+  updatedAt: any
+  winner: { __typename?: 'PlayerType'; id: string; name: string }
+  loser: { __typename?: 'PlayerType'; id: string; name: string }
+}
+
+export type PlayerFragment = {
+  __typename?: 'PlayerType'
+  id: string
+  name: string
+}
+
 export type CreateMatchMutationVariables = Exact<{
   loserId: Scalars['ID']
   winnerId: Scalars['ID']
@@ -96,24 +111,35 @@ export type PlayersQuery = {
   } | null> | null
 }
 
+export const PlayerFragmentDoc = gql`
+  fragment Player on PlayerType {
+    id
+    name
+  }
+`
+export const MatchFragmentDoc = gql`
+  fragment Match on MatchType {
+    id
+    winner {
+      ...Player
+    }
+    loser {
+      ...Player
+    }
+    createdAt
+    updatedAt
+  }
+  ${PlayerFragmentDoc}
+`
 export const CreateMatchDocument = gql`
   mutation CreateMatch($loserId: ID!, $winnerId: ID!) {
     createMatch(loserId: $loserId, winnerId: $winnerId) {
       match {
-        id
-        winner {
-          id
-          name
-        }
-        loser {
-          id
-          name
-        }
-        createdAt
-        updatedAt
+        ...Match
       }
     }
   }
+  ${MatchFragmentDoc}
 `
 
 /**
@@ -212,10 +238,10 @@ export type HelloQueryCompositionFunctionResult =
 export const PlayersDocument = gql`
   query Players {
     players {
-      id
-      name
+      ...Player
     }
   }
+  ${PlayerFragmentDoc}
 `
 
 /**
@@ -271,5 +297,9 @@ export const namedOperations = {
   },
   Mutation: {
     CreateMatch: 'CreateMatch',
+  },
+  Fragment: {
+    Match: 'Match',
+    Player: 'Player',
   },
 }

@@ -1,17 +1,7 @@
 mutation CreateMatch($loserId: ID!, $winnerId: ID!) {
   createMatch(loserId: $loserId, winnerId: $winnerId) {
     match {
-      id
-      winner {
-        id
-        name
-      }
-      loser {
-        id
-        name
-      }
-      createdAt
-      updatedAt
+      ...Match
     }
   }
 }
