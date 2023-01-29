@@ -53,7 +53,7 @@ export default {
       mutate: createMatch,
       loading: creatingMatch,
       error: createMatchError,
-    } = useCreateMatchMutation()
+    } = useCreateMatchMutation({})
     return {
       result,
       loading,
