@@ -30,6 +30,8 @@ query {
  players {
   id,
   name
+  matchWinner {id}
+  matchLoser {id}
 }
 }
 ```
