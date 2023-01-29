@@ -29,24 +29,23 @@
         </select>
       </div>
       <button
-        @click="
-          createMatch({
-            winnerId: winningPlayer.id,
-            loserId: losingPlayer.id,
-          })
-        "
+        @click="submit(winningPlayer.id, losingPlayer.id)"
         v-if="losingPlayer !== null && winningPlayer !== null"
       >
         Submit
       </button>
+    </div>
+    <div v-if="createdMatch">
+      <p>Created match successfully</p>
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { usePlayersQuery, useCreateMatchMutation } from '../generated/graphql'
+import { defineComponent } from 'vue'
 
-export default {
+export default defineComponent({
   setup() {
     const { result, loading, error } = usePlayersQuery()
     const {
@@ -67,7 +66,20 @@ export default {
     return {
       winningPlayer: null,
       losingPlayer: null,
+      createdMatch: false,
     }
   },
-}
+  methods: {
+    async submit(winnerId: string, loserId: string) {
+      try {
+        const { mutate: createMatch } = useCreateMatchMutation({})
+
+        await createMatch({ winnerId, loserId })
+        this.createdMatch = true
+      } catch (error) {
+        this.createdMatch = false
+      }
+    },
+  },
+})
 </script>
