@@ -1,6 +1,8 @@
 <template>
-  <div class="apollo">
-    <img alt="Vue logo" src="../assets/logo.png" />
+  <div
+    class="apollo"
+    style="display: flex; justify-content: center; align-items: center"
+  >
     <p v-if="error">Something went wrong...</p>
     <p v-if="loading">Loading...</p>
     <div v-else>
