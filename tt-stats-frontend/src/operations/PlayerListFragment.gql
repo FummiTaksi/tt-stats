@@ -1,0 +1,12 @@
+fragment PlayerList on PlayerType {
+  id
+  name
+
+  matchWinner {
+    ...Match
+  }
+
+  matchLoser {
+    ...Match
+  }
+}
