@@ -1,13 +1,30 @@
-<script>
+<script lang="ts">
+import { PropType } from 'vue'
+import { PlayerListFragment } from '../generated/graphql'
 export default {
   props: {
-    ['players']: { type: Array, required: true },
+    players: {
+      type: Array as PropType<Array<PlayerListFragment[]>>,
+      required: true,
+    },
   },
 }
 </script>
 
 <template>
-  <li v-for="{ name, id } in players" v-bind:key="id">
-    {{ name }}
-  </li>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Won matches</th>
+      <th>Lost matches</th>
+    </tr>
+    <tr
+      v-for="{ id, name, matchWinner, matchLoser } in players"
+      v-bind:key="id"
+    >
+      <td>{{ name }}</td>
+      <td>{{ matchWinner.length }}</td>
+      <td>{{ matchLoser.length }}</td>
+    </tr>
+  </table>
 </template>

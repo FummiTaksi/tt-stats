@@ -76,6 +76,28 @@ export type PlayerFragment = {
   name: string
 }
 
+export type PlayerListFragment = {
+  __typename?: 'PlayerType'
+  id: string
+  name: string
+  matchWinner: Array<{
+    __typename?: 'MatchType'
+    id: string
+    createdAt: any
+    updatedAt: any
+    winner: { __typename?: 'PlayerType'; id: string; name: string }
+    loser: { __typename?: 'PlayerType'; id: string; name: string }
+  }>
+  matchLoser: Array<{
+    __typename?: 'MatchType'
+    id: string
+    createdAt: any
+    updatedAt: any
+    winner: { __typename?: 'PlayerType'; id: string; name: string }
+    loser: { __typename?: 'PlayerType'; id: string; name: string }
+  }>
+}
+
 export type CreateMatchMutationVariables = Exact<{
   loserId: Scalars['ID']
   winnerId: Scalars['ID']
@@ -108,6 +130,22 @@ export type PlayersQuery = {
     __typename?: 'PlayerType'
     id: string
     name: string
+    matchWinner: Array<{
+      __typename?: 'MatchType'
+      id: string
+      createdAt: any
+      updatedAt: any
+      winner: { __typename?: 'PlayerType'; id: string; name: string }
+      loser: { __typename?: 'PlayerType'; id: string; name: string }
+    }>
+    matchLoser: Array<{
+      __typename?: 'MatchType'
+      id: string
+      createdAt: any
+      updatedAt: any
+      winner: { __typename?: 'PlayerType'; id: string; name: string }
+      loser: { __typename?: 'PlayerType'; id: string; name: string }
+    }>
   } | null> | null
 }
 
@@ -130,6 +168,19 @@ export const MatchFragmentDoc = gql`
     updatedAt
   }
   ${PlayerFragmentDoc}
+`
+export const PlayerListFragmentDoc = gql`
+  fragment PlayerList on PlayerType {
+    id
+    name
+    matchWinner {
+      ...Match
+    }
+    matchLoser {
+      ...Match
+    }
+  }
+  ${MatchFragmentDoc}
 `
 export const CreateMatchDocument = gql`
   mutation CreateMatch($loserId: ID!, $winnerId: ID!) {
@@ -238,10 +289,10 @@ export type HelloQueryCompositionFunctionResult =
 export const PlayersDocument = gql`
   query Players {
     players {
-      ...Player
+      ...PlayerList
     }
   }
-  ${PlayerFragmentDoc}
+  ${PlayerListFragmentDoc}
 `
 
 /**
@@ -301,5 +352,6 @@ export const namedOperations = {
   Fragment: {
     Match: 'Match',
     Player: 'Player',
+    PlayerList: 'PlayerList',
   },
 }
