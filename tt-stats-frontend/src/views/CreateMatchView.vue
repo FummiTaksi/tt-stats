@@ -42,8 +42,18 @@
 </template>
 
 <script lang="ts">
-import { usePlayersQuery, useCreateMatchMutation } from '../generated/graphql'
+import {
+  usePlayersQuery,
+  useCreateMatchMutation,
+  PlayerFragment,
+} from '../generated/graphql'
 import { defineComponent } from 'vue'
+
+interface CreateMatchData {
+  winningPlayer: PlayerFragment | null
+  losingPlayer: PlayerFragment | null
+  createdMatch: boolean
+}
 
 export default defineComponent({
   setup() {
@@ -62,7 +72,7 @@ export default defineComponent({
       createMatchError,
     }
   },
-  data() {
+  data(): CreateMatchData {
     return {
       winningPlayer: null,
       losingPlayer: null,
