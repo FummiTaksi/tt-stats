@@ -1,7 +1,12 @@
-<script>
+<script lang="ts">
+import { PropType } from 'vue'
+import { PlayerListFragment } from '../generated/graphql'
 export default {
   props: {
-    ['players']: { type: Array, required: true },
+    players: {
+      type: Array as PropType<Array<PlayerListFragment[]>>,
+      required: true,
+    },
   },
 }
 </script>
