@@ -137,3 +137,9 @@ Insert two players into database with command
 ```
 cat ./database-seeds/insert-players.sql| docker-compose exec -T tt-stats-db psql -U tt-stats
 ```
+
+or use django to create player with a random name
+
+```
+docker-compose exec tt-stats-backend bash -c "python backend/manage.py players"
+```
