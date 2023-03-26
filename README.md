@@ -158,3 +158,17 @@ docker-compose exec tt-stats-backend bash -c "python backend/manage.py create-ra
 
 amount is required argument
 
+
+### Clean test data
+
+
+Delete all matches with command
+```
+docker-compose exec tt-stats-backend bash -c "python backend/manage.py delete-all-matches"   
+```
+
+and all players with command
+
+```
+docker-compose exec tt-stats-backend bash -c "python backend/manage.py delete-all-players"   
+```
