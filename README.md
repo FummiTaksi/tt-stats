@@ -141,5 +141,7 @@ cat ./database-seeds/insert-players.sql| docker-compose exec -T tt-stats-db psql
 or use django to create player with a random name
 
 ```
-docker-compose exec tt-stats-backend bash -c "python backend/manage.py players"
+docker-compose exec tt-stats-backend bash -c "python backend/manage.py players --amount 10"
 ```
+
+amount is required argument
