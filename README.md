@@ -130,7 +130,9 @@ NOTE: Every time you run a new version of the backend where new packages is inst
 docker-compose up --build tt-stats-backend
 ```
 
-### Seed players
+### Test data generation
+
+#### Creating players
 
 Insert two players into database with command
 
@@ -141,5 +143,32 @@ cat ./database-seeds/insert-players.sql| docker-compose exec -T tt-stats-db psql
 or use django to create player with a random name
 
 ```
-docker-compose exec tt-stats-backend bash -c "python backend/manage.py players"
+docker-compose exec tt-stats-backend bash -c "python backend/manage.py create-random-players --amount 10"
+```
+
+amount is required argument
+
+### Creating matches
+
+Use django to create matches with random outcomes with:
+
+```
+docker-compose exec tt-stats-backend bash -c "python backend/manage.py create-random-matches --amount 10"
+```
+
+amount is required argument
+
+
+### Clean test data
+
+
+Delete all matches with command
+```
+docker-compose exec tt-stats-backend bash -c "python backend/manage.py delete-all-matches"   
+```
+
+and all players with command
+
+```
+docker-compose exec tt-stats-backend bash -c "python backend/manage.py delete-all-players"   
 ```
