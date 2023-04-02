@@ -11,6 +11,19 @@ class MatchType(DjangoObjectType):
     class Meta:
         model = Match
 
+
+class createPlayer(graphene.Mutation):
+    player = graphene.Field(PlayerType)
+
+    class Arguments:
+        name = graphene.String(required=True)
+    
+    def mutate(self, resolve, **kwargs):
+        player = Player.objects.create(
+            name = kwargs.get('name')
+        )
+        return createPlayer(name=name)
+
 class createMatch(graphene.Mutation):
     match = graphene.Field(MatchType)
 
@@ -37,5 +50,6 @@ class Query(graphene.ObjectType):
 
 class Mutation(graphene.ObjectType):
     create_match = createMatch.Field()
+    create_player = createPlayer.Field()
 
 schema = graphene.Schema(query=Query, mutation=Mutation)
