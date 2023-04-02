@@ -35,11 +35,16 @@ export type MatchType = {
 export type Mutation = {
   __typename?: 'Mutation'
   createMatch?: Maybe<CreateMatch>
+  createPlayer?: Maybe<CreatePlayer>
 }
 
 export type MutationCreateMatchArgs = {
   loserId: Scalars['ID']
   winnerId: Scalars['ID']
+}
+
+export type MutationCreatePlayerArgs = {
+  name: Scalars['String']
 }
 
 export type PlayerType = {
@@ -59,6 +64,11 @@ export type Query = {
 export type CreateMatch = {
   __typename?: 'createMatch'
   match?: Maybe<MatchType>
+}
+
+export type CreatePlayer = {
+  __typename?: 'createPlayer'
+  player?: Maybe<PlayerType>
 }
 
 export type MatchFragment = {
@@ -115,6 +125,18 @@ export type CreateMatchMutation = {
       winner: { __typename?: 'PlayerType'; id: string; name: string }
       loser: { __typename?: 'PlayerType'; id: string; name: string }
     } | null
+  } | null
+}
+
+export type CreatePlayerMutationVariables = Exact<{
+  name: Scalars['String']
+}>
+
+export type CreatePlayerMutation = {
+  __typename?: 'Mutation'
+  createPlayer?: {
+    __typename?: 'createPlayer'
+    player?: { __typename?: 'PlayerType'; id: string; name: string } | null
   } | null
 }
 
@@ -234,6 +256,57 @@ export type CreateMatchMutationCompositionFunctionResult =
     CreateMatchMutation,
     CreateMatchMutationVariables
   >
+export const CreatePlayerDocument = gql`
+  mutation CreatePlayer($name: String!) {
+    createPlayer(name: $name) {
+      player {
+        ...Player
+      }
+    }
+  }
+  ${PlayerFragmentDoc}
+`
+
+/**
+ * __useCreatePlayerMutation__
+ *
+ * To run a mutation, you first call `useCreatePlayerMutation` within a Vue component and pass it any options that fit your needs.
+ * When your component renders, `useCreatePlayerMutation` returns an object that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - Several other properties: https://v4.apollo.vuejs.org/api/use-mutation.html#return
+ *
+ * @param options that will be passed into the mutation, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/mutation.html#options;
+ *
+ * @example
+ * const { mutate, loading, error, onDone } = useCreatePlayerMutation({
+ *   variables: {
+ *     name: // value for 'name'
+ *   },
+ * });
+ */
+export function useCreatePlayerMutation(
+  options:
+    | VueApolloComposable.UseMutationOptions<
+        CreatePlayerMutation,
+        CreatePlayerMutationVariables
+      >
+    | ReactiveFunction<
+        VueApolloComposable.UseMutationOptions<
+          CreatePlayerMutation,
+          CreatePlayerMutationVariables
+        >
+      >
+) {
+  return VueApolloComposable.useMutation<
+    CreatePlayerMutation,
+    CreatePlayerMutationVariables
+  >(CreatePlayerDocument, options)
+}
+export type CreatePlayerMutationCompositionFunctionResult =
+  VueApolloComposable.UseMutationReturn<
+    CreatePlayerMutation,
+    CreatePlayerMutationVariables
+  >
 export const HelloDocument = gql`
   query Hello {
     hello
@@ -348,6 +421,7 @@ export const namedOperations = {
   },
   Mutation: {
     CreateMatch: 'CreateMatch',
+    CreatePlayer: 'CreatePlayer',
   },
   Fragment: {
     Match: 'Match',
