@@ -7,7 +7,7 @@
     <p v-if="loading">Loading...</p>
     <div v-else>
       <input v-model="name" />
-      <button @click="submit(name)">Create player</button>
+      <button @click="createPlayer({ name })">Create player</button>
       <PlayerList :players="result.players" />
     </div>
   </div>
@@ -29,12 +29,6 @@ export default defineComponent({
     return {
       name: '',
     }
-  },
-  methods: {
-    async submit(name: string) {
-      const { mutate: createPlayer } = useCreatePlayerMutation({})
-      await createPlayer({ name })
-    },
   },
   components: { PlayerList },
 })
