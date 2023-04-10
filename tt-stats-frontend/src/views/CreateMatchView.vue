@@ -82,9 +82,7 @@ export default defineComponent({
   methods: {
     async submit(winnerId: string, loserId: string) {
       try {
-        const { mutate: createMatch } = useCreateMatchMutation({})
-
-        await createMatch({ winnerId, loserId })
+        await this.createMatch({ winnerId, loserId })
         this.createdMatch = true
       } catch (error) {
         this.createdMatch = false
