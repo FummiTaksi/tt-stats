@@ -1,8 +1,8 @@
 <template>
   <div class="apollo">
     <p v-if="error">Something went wrong...</p>
-    <p v-if="loading">Loading...</p>
-    <p v-if="creatingMatch">Creating match...</p>
+    <p v-else-if="loading">Loading...</p>
+    <p v-else-if="creatingMatch">Creating match...</p>
     <div v-else>
       <div>
         Select winner
