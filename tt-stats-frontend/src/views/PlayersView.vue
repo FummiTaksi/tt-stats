@@ -20,10 +20,10 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   setup() {
-    const { result, loading, error } = usePlayersQuery()
+    const { result, loading, error, refetch } = usePlayersQuery()
     const { mutate: createPlayer } = useCreatePlayerMutation({})
 
-    return { result, loading, error, createPlayer }
+    return { result, loading, error, createPlayer, refetch }
   },
   data() {
     return {
@@ -32,8 +32,8 @@ export default defineComponent({
   },
   methods: {
     async submit(name: string) {
-      const { mutate: createPlayer } = useCreatePlayerMutation({})
-      await createPlayer({ name })
+      await this.createPlayer({ name })
+      await this.refetch()
     },
   },
   components: { PlayerList },
