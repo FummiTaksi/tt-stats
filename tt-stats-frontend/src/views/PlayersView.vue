@@ -7,7 +7,7 @@
     <p v-if="loading">Loading...</p>
     <div v-else>
       <input v-model="name" />
-      <button @click="createPlayer({ name })">Create player</button>
+      <button @click="submit(name)">Create player</button>
       <PlayerList :players="result.players" />
     </div>
   </div>
@@ -20,15 +20,21 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   setup() {
-    const { result, loading, error } = usePlayersQuery()
+    const { result, loading, error, refetch } = usePlayersQuery()
     const { mutate: createPlayer } = useCreatePlayerMutation({})
 
-    return { result, loading, error, createPlayer }
+    return { result, loading, error, createPlayer, refetch }
   },
   data() {
     return {
       name: '',
     }
+  },
+  methods: {
+    async submit(name: string) {
+      await this.createPlayer({ name })
+      await this.refetch()
+    },
   },
   components: { PlayerList },
 })
